@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="43de1be6-132e-470a-8a7a-c21768d95da5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/avc_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/avc_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/.pytest_cache/v/cache/lastfailed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/v/cache/nodeids" beforeDir="false" afterPath="$PROJECT_DIR$/.pytest_cache/v/cache/nodeids" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avc_fulltest/test_functionality.py" beforeDir="false" afterPath="$PROJECT_DIR$/avc_fulltest/test_functionality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/maincase.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/maincase.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/avc_test$py_test_in_test_functionality_py.coverage" NAME="py.test in test_functionality.py Coverage Results" MODIFIED="1568276528238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fulltest" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/avc_fulltest/test_functionality.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="365">
+                  <caret line="271" column="25" selection-start-line="271" selection-start-column="25" selection-end-line="271" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#23#53#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common/maincase.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1188">
+                  <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#23#53#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common/maincase2.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="616">
+                  <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#23#53#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/avc_fulltest/test_RTM_disconnect.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="22">
+                  <caret line="407" column="28" selection-start-line="407" selection-start-column="28" selection-end-line="407" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#23#53#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>poco</find>
+      <find>poco_1</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>poco_1</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/fulltest/test_function.py" />
+        <option value="$PROJECT_DIR$/common/device.py" />
+        <option value="$PROJECT_DIR$/fulltest/test_funtionality.ipynb" />
+        <option value="$PROJECT_DIR$/config/config.py" />
+        <option value="$PROJECT_DIR$/maincase/case_tag.py" />
+        <option value="$PROJECT_DIR$/fulltest/test_functionality.py" />
+        <option value="$PROJECT_DIR$/maincase/android_main.py" />
+        <option value="$PROJECT_DIR$/maincase/maincase.py" />
+        <option value="$PROJECT_DIR$/avc_android_fulltest/test_functionality.py" />
+        <option value="$PROJECT_DIR$/common/case_tag.py" />
+        <option value="$PROJECT_DIR$/common/maincase.py" />
+        <option value="$PROJECT_DIR$/common/maincase2.py" />
+        <option value="$PROJECT_DIR$/avc_fulltest/test_functionality.py" />
+        <option value="$PROJECT_DIR$/avc_fulltest/test_RTM_disconnect.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="-1920" />
+    <option name="y" value="114" />
+    <option name="width" value="1440" />
+    <option name="height" value="830" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="agoraAVC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agoraAVC" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agoraAVC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agoraAVC" type="462c0819:PsiDirectoryNode" />
+              <item name="avc_fulltest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agoraAVC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agoraAVC" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agoraAVC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agoraAVC" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resource/images" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resource/images" />
+      <recent name="$PROJECT_DIR$/avc_android_fulltest" />
+      <recent name="$PROJECT_DIR$/resource/image" />
+      <recent name="$PROJECT_DIR$/maincase" />
+      <recent name="$PROJECT_DIR$/fulltest" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/a/b" />
+      <recent name="$PROJECT_DIR$/apk" />
+      <recent name="$PROJECT_DIR$/common" />
+      <recent name="$PROJECT_DIR$/avc_fulltest" />
+      <recent name="$PROJECT_DIR$/resource/image" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python tests.pytest for test_functionality.TestAndroid">
+    <configuration name="pytest for test_functionality.TestAndroid" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="avc_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/avc_fulltest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_functionality.TestAndroid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_functionality.TestAndroid.test_PWDlength_longer_18" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="avc_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/avc_fulltest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_functionality.TestAndroid.test_PWDlength_longer_18&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_functionality.TestAndroid.test_mutelocalvideo_joinchanel" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="avc_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/avc_fulltest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_functionality.TestAndroid.test_mutelocalvideo_joinchanel&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_functionality.TestAndroid.test_name_valid" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="avc_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/avc_fulltest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_functionality.TestAndroid.test_name_valid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in /Users/apple/Desktop/agoraAVC/fulltest/test_functionality.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="avc_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fulltest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/fulltest/test_functionality.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for test_functionality.TestAndroid" />
+        <item itemvalue="Python tests.pytest for test_functionality.TestAndroid.test_PWDlength_longer_18" />
+        <item itemvalue="Python tests.pytest for test_functionality.TestAndroid.test_name_valid" />
+        <item itemvalue="Python tests.pytest for test_functionality.TestAndroid.test_mutelocalvideo_joinchanel" />
+        <item itemvalue="Python tests.pytest in /Users/apple/Desktop/agoraAVC/fulltest/test_functionality.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="43de1be6-132e-470a-8a7a-c21768d95da5" name="Default" comment="" />
+      <created>1568171607580</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568171607580</updated>
+      <workItem from="1572596083787" duration="1809000" />
+      <workItem from="1572854314393" duration="211000" />
+      <workItem from="1572854816451" duration="2962000" />
+      <workItem from="1572934040730" duration="525000" />
+      <workItem from="1572934737171" duration="238000" />
+      <workItem from="1573007871184" duration="2281000" />
+      <workItem from="1573026613944" duration="130000" />
+      <workItem from="1573026762458" duration="82255000" />
+      <workItem from="1573569483295" duration="842000" />
+      <workItem from="1573694501264" duration="148000" />
+      <workItem from="1573718971035" duration="975000" />
+      <workItem from="1573720068840" duration="14000" />
+      <workItem from="1573720087288" duration="3000" />
+      <workItem from="1573720112712" duration="18432000" />
+      <workItem from="1574041363507" duration="78393000" />
+      <workItem from="1574645821474" duration="286000" />
+      <workItem from="1574846471141" duration="615000" />
+      <workItem from="1575249510518" duration="69000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="py_test_in_test_functionality_py - 2019.09.11 at 15h 46m 05s.xml">
+      <configuration name="py.test in test_functionality.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_functionality_py - 2019.09.12 at 16h 22m 11s.xml">
+      <configuration name="py.test in test_functionality.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid_test_mutelocalvideo_joinchanel - 2019.11.06 at 16h 42m 29s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid.test_mutelocalvideo_joinchanel" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid_test_name_valid - 2019.11.06 at 16h 45m 04s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid.test_name_valid" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid_test_PWDlength_longer_18 - 2019.11.07 at 10h 27m 08s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid.test_PWDlength_longer_18" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid_test_PWDlength_longer_18 - 2019.11.07 at 10h 29m 38s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid.test_PWDlength_longer_18" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid - 2019.11.07 at 11h 06m 05s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid - 2019.11.07 at 11h 08m 03s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid - 2019.11.07 at 21h 43m 44s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_test_functionality_TestAndroid - 2019.11.15 at 14h 07m 20s.xml">
+      <configuration name="pytest for test_functionality.TestAndroid" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="190188000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1920" y="32" width="1920" height="1080" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16986156" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32816902" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.44851485" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.80352306" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3292683" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49928468" visible="true" weight="0.27920792" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.4797203" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.108093716" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32816902" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.44851485" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.80352306" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3292683" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49928468" visible="true" weight="0.34059405" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.4797203" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/agoraAVC$pytest_for_test_functionality_TestAndroid_test_mutelocalvideo_joinchanel.coverage" NAME="pytest for test_functionality.TestAndroid.test_mutelocalvideo_joinchanel Coverage Results" MODIFIED="1573029748188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/avc_fulltest" />
+    <SUITE FILE_PATH="coverage/agoraAVC$pytest_for_test_functionality_TestAndroid_test_name_valid.coverage" NAME="pytest for test_functionality.TestAndroid.test_name_valid Coverage Results" MODIFIED="1573029903112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/avc_fulltest" />
+    <SUITE FILE_PATH="coverage/agoraAVC$pytest_for_test_functionality_TestAndroid.coverage" NAME="pytest for test_functionality.TestAndroid Coverage Results" MODIFIED="1573798033647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/avc_fulltest" />
+    <SUITE FILE_PATH="coverage/agoraAVC$pytest_for_test_functionality_TestAndroid_test_PWDlength_longer_18.coverage" NAME="pytest for test_functionality.TestAndroid.test_PWDlength_longer_18 Coverage Results" MODIFIED="1573093777375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/avc_fulltest" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/resource/images/test_31.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_33.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_33_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_34.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_34_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_35_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_35.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_38.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_38_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-674" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.pytest_cache/v/cache/stepwise">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.pytest_cache/v/cache/nodeids">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-39" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/.pytest_cache/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/.pytest_cache/README.md" />
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/.pytest_cache/v/cache/stepwise" />
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/.pytest_cache/v/cache/lastfailed" />
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/.pytest_cache/v/cache/nodeids" />
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/.pytest_cache/CACHEDIR.TAG" />
+    <entry file="file://$PROJECT_DIR$/resource/images/test_23_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_24.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.pytest_cache/v/cache/lastfailed">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-534" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_41.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/images/test_41_2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574060355183.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574318481792.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574388802546.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574390635065.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574408364411.png" />
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574405924286.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573290422973.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573279282211.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573438981381.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573294105065.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573440042000.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573453313058.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573454482252.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1573539825762.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574215328320.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574155811655.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574149708948.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574135074701.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574135042899.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574045198264.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574309054241.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574043428432.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574058657622.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/a/b/tpl1574305499112.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/test_functionality.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="271" column="25" selection-start-line="271" selection-start-column="25" selection-end-line="271" selection-end-column="25" />
+          <folding>
+            <element signature="e#23#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/maincase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+          <folding>
+            <element signature="e#23#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/maincase2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding>
+            <element signature="e#23#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/avc_fulltest/test_RTM_disconnect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="407" column="28" selection-start-line="407" selection-start-column="28" selection-end-line="407" selection-end-column="28" />
+          <folding>
+            <element signature="e#23#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
