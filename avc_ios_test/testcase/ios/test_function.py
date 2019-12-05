@@ -1175,8 +1175,22 @@ class TestIOS:
         channeltime_second = avc_ios.getWordsInImage(path3)
         print("<<<<", channeltime_second)
         # assert channeltime_second >= "00:00:00" and channeltime_second <= "00:00:05"
+        
 
-
+    '''4689进入会议室后不可修改密码'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_changePassWordInChannel(self):
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.joinChannel(self.channel_name, self.password)
+        avc_ios.leaveChannel()
+        avc_ios.joinChannel(roomName=self.channel_name, password="changePassword")
+        assert avc_ios.errorPasswordInfo
 
 
 
