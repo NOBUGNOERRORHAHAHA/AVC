@@ -40,8 +40,8 @@ class Android_AVC(Common_AVC):
         text(password)
         sleep(self.interval)
 
-    def joinChannel(self,channelname,password):
-        self.inputChannelName(channelname)
+    def joinChannel(self,roomName,password):
+        self.inputChannelName(roomName)
         self.inputPassword(password)
         poco_2("io.agora.vcall:id/btJoin").click()
         # sleep(self.interval)
@@ -72,19 +72,33 @@ class Android_AVC(Common_AVC):
         poco_2("android.widget.LinearLayout").offspring("io.agora.vcall:id/localAudio").child(
             "io.agora.vcall:id/mediaImage").click()
 
-    #mute房间的视频
+    # mute房间的视频
     def muteChannelVideo(self):
-        poco_2("android.widget.LinearLayout").offspring("android:id/content").offspring(
-            "io.agora.vcall:id/scrollView").offspring("io.agora.vcall:id/itemCamera").offspring(
-            "io.agora.vcall:id/btSwitch").click()
+        if poco_2(text="参会者进入房间时自动关闭摄像头").exists():
+            print("channel video already mute")
+        else:
+            poco_2(text="参会者进入房间时不自动关闭摄像头").click()
 
-    #mute房间的视频
+     # unmute房间的视频
+    def UnmuteChannelVideo(self):
+        if poco_2(text="参会者进入房间时不自动关闭摄像头").exists():
+            print("channel video already unmute")
+        else:
+            poco_2(text="参会者进入房间时自动关闭摄像头").click()
+
+    # mute房间的音频
     def muteChannelAudio(self):
-        poco_2("android.widget.LinearLayout").offspring("android:id/content").offspring(
-            "io.agora.vcall:id/scrollView").offspring("io.agora.vcall:id/itemMicrophone").offspring(
-            "io.agora.vcall:id/btSwitch").click()
+        if poco_2(text="参会者进入房间时自动关闭麦克风").exists():
+            print("channel audio already mute")
+        else:
+            poco_2(text="参会者进入房间时不自动关闭麦克风").click()
 
-
+    # unmute房间的音频
+    def UnmuteChannelAudio(self):
+        if poco_2(text="参会者进入房间时不自动关闭麦克风").exists():
+            print("channel audio already unmute")
+        else:
+            poco_2(text="参会者进入房间时自动关闭麦克风").click()
 
     def goSettingInChannel(self):
         poco_2("io.agora.vcall:id/btSettings").click()
@@ -183,6 +197,16 @@ class Android_AVC(Common_AVC):
         poco_2("android.widget.LinearLayout").offspring("io.agora.vcall:id/mediaImage").click()
         poco_2("android:id/button1").click()
 
+    def muteOthersAudio(self):
+        poco_2("android.widget.LinearLayout").offspring("io.agora.vcall:id/part_recy").child("android.view.ViewGroup")[
+            1].child("io.agora.vcall:id/more").click()
+        poco_2("io.agora.vcall:id/audioActionText").click()
+
+    def muteOthersVideo(self):
+        poco_2("android.widget.LinearLayout").offspring("io.agora.vcall:id/part_recy").child("android.view.ViewGroup")[
+            1].child("io.agora.vcall:id/more").click()
+        poco_2("io.agora.vcall:id/videoActionText").click()
+
     def downIcon(self):
         poco_2("android.view.View").click()
         
@@ -196,7 +220,18 @@ class Android_AVC(Common_AVC):
     def remoteTime(self):
         poco_2("io.agora.vcall:id/duration").get_text()
 
-#
+    # 房间错误提示
+    def errorPasswordInfo(self):
+        poco_2("Room join failed, incorrect password, ").exists()
+
+    def channelRoomName(self):
+        poco_2("io.agora.vcall:id/roomName").get_text()
+
+    def channelPassword(self):
+        poco_2("io.agora.vcall:id/roomPwd").get_text()
+
+
+
     # def leaveChannel(self):
     #     poco_2("io.agora.vcall:id/hangUp").click()
     #     sleep(self.interval)

@@ -92,32 +92,32 @@ class TestIOS:
     #     print(info)
     #     pytest_utils.execute_manual_step('日志上传信息完整')
     
-    # 断网过程中，被mute/unmute后重新联网
-    def t(self):
-        # 启动android
-        avc_android = self.avcAndroid
-        avc_android.setCurrentDevice(1)
-        avc_android.startAVC(self.packageName_android)
-        avc_android.joinChannel(self.channel_name, self.password)
-        avc_android.muteAudioInchannel()
-        avc_android.muteVideoInchannel()
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        avc_ios.startAVC(self.packageName)
-        avc_ios.joinChannel(self.channel_name, self.password)
-        avc_ios.goToParticipantList()
-        # unmute音频
-        avc_ios.unMutuOthersAudio()
-        assert avc_ios.inviteExists
-        avc_ios.sureClickUnmute()
-        # unmute视频
-        avc_ios.unMutuOthersVideo()
-        assert avc_ios.inviteExists
-        avc_ios.sureClickUnmute()
-        # 踢人
-        avc_ios.getOthersOut()
-        assert avc_ios.inviteExists
-        avc_ios.sureClickUnmute()
+    # # 断网过程中，被mute/unmute后重新联网
+    # def t(self):
+    #     # 启动android
+    #     avc_android = self.avcAndroid
+    #     avc_android.setCurrentDevice(1)
+    #     avc_android.startAVC(self.packageName_android)
+    #     avc_android.joinChannel(self.channel_name, self.password)
+    #     avc_android.muteAudioInchannel()
+    #     avc_android.muteVideoInchannel()
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     avc_ios.startAVC(self.packageName)
+    #     avc_ios.joinChannel(self.channel_name, self.password)
+    #     avc_ios.goToParticipantList()
+    #     # unmute音频
+    #     avc_ios.unMutuOthersAudio()
+    #     assert avc_ios.inviteExists
+    #     avc_ios.sureClickUnmute()
+    #     # unmute视频
+    #     avc_ios.unMutuOthersVideo()
+    #     assert avc_ios.inviteExists
+    #     avc_ios.sureClickUnmute()
+    #     # 踢人
+    #     avc_ios.getOthersOut()
+    #     assert avc_ios.inviteExists
+    #     avc_ios.sureClickUnmute()
 
 

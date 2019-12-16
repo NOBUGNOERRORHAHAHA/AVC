@@ -41,7 +41,7 @@ class IOS_AVC(Common_AVC):
         # poco("TextField").set_text("")
         text(nickname)
 
-    #更新头像
+    # 更新头像
     def updateAvatar(self):
         # btn_avatar = poco("Window").child("Other").child("Other").child("Other").child("Other").child("Other")[1].child("Button")[0]
         # btn_avatar.click()
@@ -72,25 +72,37 @@ class IOS_AVC(Common_AVC):
         # poco("加入").click()
         # wait(Template(r"resource/images/tpl1568189862382.png", record_pos=(0.0, 0.811), resolution=(750, 1334)))
         # print(">>>>>>>>>>Join Channel Success>>>>>>>>")
-        
-    # def joinChannel(self):
-    #     poco("加入").click()
 
     def joinChannelSecond(self):
         poco("加入").click()
-        
+
+    # def reSetRoomName(self,roomName):
+    #     poco("Window").child("Other").child("Other").child("Other").offspring("ScrollView").child("Other").child(
+    #         "TextField")[0].long_click(duration=2)
+    #     poco("全选").click()
+    #     poco("剪切").click()
+    #     text(roomName,enter=False)
+
+    def reSetPassword(self,password):
+        poco("Window").child("Other").child("Other").child("Other").offspring("ScrollView").child("Other").child(
+            "TextField")[1].long_click(duration=2)
+        poco("全选").click()
+        poco("剪切").click()
+        text(password)
+
+    # def joinChannelAgain(self,roomName,password):
+    #     self.reSetRoomName(roomName)
+    #     self.reSetPassword(password)
+
     def joinChannelWithoutPassword(self,roomName):
         self.setRoomName(roomName)
         poco("加入").click()
-        
-    
+
     def leaveChannel(self):
         # poco("hang up").click()
         print(">>>>>>>>>>Leave Channel Success>>>>>>>>")
         poco("hangup noraml").click()
         # print(">>>>>>>>>>Leave Channel Success>>>>>>>>")
-
-
 
     def setVideoResolution(self,resolution):
         '''
@@ -111,7 +123,7 @@ class IOS_AVC(Common_AVC):
         else:
             raise ValueError("[Fail] Resolution is not supported : %s" % resolution)
 
-    #会议中视频关闭
+    # 会议中视频关闭
     def videoMuteExistsInChannel(self):
         poco("camera disable").exists()
 
@@ -119,44 +131,43 @@ class IOS_AVC(Common_AVC):
     def videoUnmuteExistsInChannel(self):
         poco("camera normal").exists()
 
-    # 会议音频中关闭
+    # 会议中音频关闭
     def audioMuteExistsInChannel(self):
         poco("mic disable").exists()
 
-    #会议中音频打开
+    # 会议中音频打开
     def audioUnmuteExistsInChannel(self):
         poco("mic normal").exists()
 
-    #会议中关闭视频
+    # 会议中关闭视频
     def muteVideoInchannel(self):
         if poco("camera disable").exists():
             print("video already mute")
         else:
             poco("camera normal").click()
 
-    #会议中打开视频
+    # 会议中打开视频
     def unmuteVideoInchannel(self):
         if poco("camera normal").exists():
             print("video already unmute")
         else:
             poco("camera disable").click()
 
-    #会议中关闭音频
+    # 会议中关闭音频
     def muteAudioInchannel(self):
         if poco("mic disable").exists():
             print("audio already mute")
         else:
             poco("mic normal").click()
 
-    #会议中打开音频
+    # 会议中打开音频
     def unmuteAudioInchannel(self):
         if poco("mic normal").exists():
             print("audio already unmute")
         else:
             poco("mic disable").click()
 
-
-    #个人设置中，视频关闭状态
+    # 个人设置中，视频关闭状态
     def preVideoMuteExists(self):
         poco("摄像头, 默认关闭").exists()
 
@@ -164,22 +175,22 @@ class IOS_AVC(Common_AVC):
     def preVideoUnMuteExists(self):
         poco("摄像头, 默认打开").exists()
 
-    #个人设置中，麦克风是关闭状态
+    # 个人设置中，麦克风是关闭状态
     def preAudioMuteExists(self):
         poco("麦克风, 默认关闭").exists()
 
-    #个人设置中，麦克风是打开状态
+    # 个人设置中，麦克风是打开状态
     def preAudioUnMuteExists(self):
         poco("麦克风, 默认打开").exists()
 
-    #进入频道前，关闭摄像头
+    # 进入频道前，关闭摄像头
     def preMuteVideo(self):
         if poco("摄像头, 默认关闭").exists():
            print("video already mute")
         else:
             poco("摄像头, 默认打开").click()
 
-    #进入频道前，打开摄像头
+    # 进入频道前，打开摄像头
     def preUnmuteVideo(self):
         if poco("摄像头, 默认打开").exists():
            print("video already unmute")
@@ -200,14 +211,13 @@ class IOS_AVC(Common_AVC):
         else:
             poco("麦克风, 默认关闭").click()
 
-
-    #发送消息
+    # 发送消息
     def sendMessage(self,msg):
         poco("message tool").click()
         poco("TextField").click()
         text(msg)
     
-    #读消息
+    # 读消息
     def readMessage(self):
         poco("message tool hasMsg").click()
 
@@ -224,19 +234,53 @@ class IOS_AVC(Common_AVC):
 
     def clickLink(self):
          poco("www.baidu.com").click()
-        
 
-    #进入与会者列表
+    # 进入与会者列表
     def goToParticipantList(self):
         # poco("participants").click()
         poco("members").click()
 
-
-    #进入频道内设置
+    # 进入频道内设置
     def goSettingInChannel(self):
         # poco("Button").click()
         poco("login setting").click()
         sleep(self.interval)
+
+    # 关闭房间的视频
+    def muteChannelVideo(self):
+        if poco("摄像头, 参会者进入房间时自动关闭摄像头").exists():
+            print("channel video already mute")
+        else:
+            poco("摄像头, 参会者进入房间时不自动关闭摄像头").click()
+
+    # 打开房间的视频
+    def UnmuteChannelVideo(self):
+        if poco("摄像头, 参会者进入房间时不自动关闭摄像头").exists():
+            print("channel video already unmute")
+        else:
+            poco("摄像头, 参会者进入房间时自动关闭摄像头").click()
+
+    # 关闭房间的音频
+    def muteChannelAudio(self):
+        if poco("麦克风, 参会者进入房间时自动关闭麦克风").exists():
+            print("channel audio already mute")
+        else:
+            poco("麦克风, 参会者进入房间时不自动关闭麦克风").click()
+
+    # 打开房间的音频
+    def UnmuteChannelAudio(self):
+        if poco("麦克风, 参会者进入房间时不自动关闭麦克风").exists():
+            print("channel audio already unmute")
+        else:
+            poco("麦克风, 参会者进入房间时自动关闭麦克风").click()
+
+    # 房间视频关闭
+    def muteChannelVideoExists(self):
+        poco("摄像头, 参会者进入房间时自动关闭摄像头").exists()
+
+    # 房间音频关闭
+    def muteChannelAudioExists(self):
+        poco("麦克风, 参会者进入房间时自动关闭麦克风").exists()
 
     def applyToHost(self):
         if poco("放弃主持人权限").exists():
@@ -262,14 +306,13 @@ class IOS_AVC(Common_AVC):
         else:
             raise TimeoutError("You are not the host!")
 
-    #点击远端的小窗口切换
+    # 点击远端的小窗口切换
     def smallAndBigwindowChange(self):
         poco("Cell").click()
 
-    #切换前后摄像头
+    # 切换前后摄像头
     def frontAndRearCameras(self):
         poco("camera switch").click()
-
 
     def uploadLog(self):
         '''
@@ -283,18 +326,17 @@ class IOS_AVC(Common_AVC):
     #与会者列表中unmute别人的音频
     def unMutuOthersAudio(self):
         # poco("header_icon").click()
-        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1]
+        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1].click()
         if (poco("mic active").exists()):
             print("others audio already unmute")
         else:
             poco("mic inactive").click()
 
 
-    #与会者列表中mute别人的音频
-
+    # 与会者列表中mute别人的音频
     def mutuOthersAudio(self):
         # poco("header_icon").click()
-        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1]
+        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1].click()
         if (poco("mic inactive").exists()):
             print("others audio already mute")
         else:
@@ -303,7 +345,7 @@ class IOS_AVC(Common_AVC):
     # 与会者列表中unmute别人的视频
     def unMutuOthersVideo(self):
         # poco("header_icon").click()
-        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1]
+        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1].click()
         if (poco("video active").exists()):
             print("others video already unmute")
         else:
@@ -312,7 +354,7 @@ class IOS_AVC(Common_AVC):
     # 与会者列表中mute别人的视频
     def mutuOthersVideo(self):
         # poco("header_icon").click()
-        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1]
+        poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[1].click()
         if (poco("video inactive").exists()):
             print("others video already mute")
         else:
@@ -323,11 +365,11 @@ class IOS_AVC(Common_AVC):
         poco("header_icon").click()
         poco("hangup noraml").click()
 
-    #与会者列表中确定unmute
+    # 与会者列表中确定unmute
     def  sureClickUnmute(self):
         poco("确定").click()
 
-   #与会者列表中取消unmute
+   # 与会者列表中取消unmute
     def cancelClickUnmute(self):
         poco("Window").offspring("Alert")[2].child("Other").child("Other").child("Other")[1].child("Other")[2].child(
             "Other").child("Other").offspring("取消")[0].click()
@@ -342,18 +384,18 @@ class IOS_AVC(Common_AVC):
         poco("Window").child("Other").child("Other").child("Other").child("Other").offspring("Table").child("Cell")[
             1].offspring("call_host")[0].exists()
         
-    #频道内存在对方的说话图标
+    # 频道内存在对方的说话图标
     def audioExistInChannel(self):
         poco("mic_active").exists()
 
-    #频道内存在对方mute音频的图标
+    # 频道内存在对方mute音频的图标
     def disAudioExistInChannel(self):
         poco("mic_inactive").exists()
 
     def videoExistInChannel(self):
         poco("round").exists()
 
-    #mute音视频后查看观众显示情况
+    # mute音视频后查看观众显示情况
     def nameExists(self):
          poco("ios").exists()
 
@@ -361,10 +403,74 @@ class IOS_AVC(Common_AVC):
     def participantNameExists(self):
         poco("ios(你)").exists()
 
-    #点击房间密码说明
+    # 点击房间密码说明
     def passwordInfoClick(self):
         poco("Info").click()
 
+    def passwordInfoExists(self):
+        poco("• 房间已经存在时，需要输入正确的密码• 房间不存在时，输入的密码将成为这个房间的密码• 房间可以不设置密码").exists()
+
+    # 断网
+    def closeNetWork(self):
+        keyevent("HOME")
+        poco("设置").click()
+        poco("Window").child("Other").child("Other").child("Other")[0].child("Other").offspring("Table").child(
+            "无线局域网").child("无线局域网").click()
+        poco("Window").child("Other").child("Other").child("Other")[0].child("Other").child("Other").child(
+            "Other").child("Other").child("Other").offspring("Table").child("Cell")[0].child("无线局域网")[1].click()
+
+    # 重新连接网络
+    def openNetWork(self):
+        poco("Window").child("Other").child("Other").child("Other")[0].child("Other").child("Other").child(
+            "Other").child("Other").child("Other").offspring("Table").child("Cell")[0].child("无线局域网")[1].click()
+
+    # 频道外网络质量好
+    def goodNetWorkExistsOUT(self):
+        poco("网络质量良好").exists()
+
+    # 频道内网络质量好
+    def goodNetWorkExistsInchannel(self):
+        poco("network barItem good").exists()
+
+    # 频道外网络质量差
+    def badNetWorkExistsOUT(self):
+        poco("网络质量差").exists()
+
+    # 频道内网络质量差
+    def badNetWorkExistsInchannel(self):
+        poco("network barItem bad").exists()
+
+    # 频道外打开开发者模式
+    def openDeveloperOUT(self):
+        poco(label="个人设置").click()
+        self.slide()
+        poco("Debug Mode").click()
+
+    # 频道内打开开发者模式
+    def openDeveloperInChannel(self):
+        poco(label="房间设置").click()
+        self.slide()
+        poco("Debug Mode").click()
+
+    # 打开rtm
+    def openRTM(self):
+        poco(value="0").click()
+        poco("OK").click()
+
+    # 关闭rtm
+    def closeRTM(self):
+        poco(value="1").click()
+        poco("OK").click()
+
+    # rtm 断开业务图标
+    def rtmDisConnectIconExists(self):
+        poco("rtmDisConnect").exists()
+
+    # 打开avc
+    def openAVC(self):
+        poco(identifier="AgoraVideoCall").click()
+
+    # 房间错误提示
     def errorPasswordInfo(self):
         poco("Room join failed, incorrect password, ").exists()
 
@@ -385,11 +491,11 @@ class IOS_AVC(Common_AVC):
         poco("message tool hasMsg").exists()
 
     # 存在主持人无法更改房间属性
-    def hostNotApplyClick(self):
+    def roomSettingClick(self):
         poco("摄像头, 参会者进入房间时不自动关闭摄像头").click()
 
     # 
-    def hostNotApplyExists(self):
+    def roomSettingExists(self):
         poco("摄像头, 参会者进入房间时不自动关闭摄像头").exists()
         
     # 点击主持人信息说明
@@ -420,6 +526,17 @@ class IOS_AVC(Common_AVC):
 
     def buildExist(self):
         poco("V4.0.0 Build 541").exists()
+
+    # 显示房间名密码
+    def channelInfoExists(self):
+        poco(value="AVC").exists()
+        poco(value="avctest").exists()
+
+    # 消息服务器未连接
+    def disConnetExists(self):
+        poco("消息服务器未连接，此功能不可用").exists()
+
+    # poco(identifier="AgoraVideoCall").click()
 
 
 
