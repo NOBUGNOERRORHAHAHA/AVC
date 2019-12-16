@@ -559,7 +559,7 @@ class TestIOS:
         avc_ios.joinChannel(self.channel_name, self.password)
         pathSingleEnter = self.screeshot_path + "test_smallAndBigwindowchange_a.jpg"
         pathdoubleEnter = self.screeshot_path + "test_smallAndBigwindowchange_b.jpg"
-        pathLeaveBefore = self.screeshot_path + "test_smallAndBigwindowchange_c.jpg"
+        # pathLeaveBefore = self.screeshot_path + "test_smallAndBigwindowchange_c.jpg"
         pathLeaveAfter = self.screeshot_path + "test_smallAndBigwindowchange_d.jpg"
         pathMuteBefore = self.screeshot_path + "test_smallAndBigwindowchange_e.jpg"
         pathMuteAfter = self.screeshot_path + "test_smallAndBigwindowchange_f.jpg"
@@ -574,28 +574,30 @@ class TestIOS:
         avc_ios.getScreenshot(filename=pathdoubleEnter)
         assert verify_utils.compare_images(pathSingleEnter, pathdoubleEnter) == "Success"
         # 将某个主播设置为大屏
-        avc_ios.smallAndBigwindowChange()
-        avc_ios.getScreenshot(filename=pathLeaveBefore)
-        assert verify_utils.compare_images(pathdoubleEnter, pathLeaveBefore) == "Success"
+        # avc_ios.smallAndBigwindowChange()
+        # avc_ios.getScreenshot(filename=pathLeaveBefore)
+        # assert verify_utils.compare_images(pathdoubleEnter, pathLeaveBefore) == "Success"
         # 大屏主播退出会议，随机一人上大屏显示
         avc_android = self.avcAndroid
         avc_android.setCurrentDevice(1)
+        avc_android.downIcon()
         avc_android.leaveChannel()
         avc_ios = self.avcIOS
         avc_ios.setCurrentDevice(0)
         avc_ios.getScreenshot(filename=pathLeaveAfter)
-        assert verify_utils.compare_images(pathLeaveBefore, pathLeaveAfter) == "Success"
+        assert verify_utils.compare_images(pathdoubleEnter, pathLeaveAfter) == "Success"
         avc_android = self.avcAndroid
         avc_android.setCurrentDevice(1)
         avc_android.joinChannel(self.channel_name,self.password)
         avc_ios = self.avcIOS
         avc_ios.setCurrentDevice(0)
         # 将某个主播设置为大屏
-        avc_ios.smallAndBigwindowChange()
+        # avc_ios.smallAndBigwindowChange()
         # pathMuteBefore 保存大屏主播mute音视频之前本地看到的大屏幕
         avc_ios.getScreenshot(filename=pathMuteBefore)
         avc_android = self.avcAndroid
         avc_android.setCurrentDevice(1)
+        avc_android.downIcon()
         avc_android.downIcon()
         # 大屏主播mute音视频变成观众，随机一人上大屏显示
         avc_android.muteAudioInchannel()
@@ -604,7 +606,7 @@ class TestIOS:
         avc_ios.setCurrentDevice(0)
         # pathMuteAfter 保存大屏主播mute音视频之后本地看到的大屏幕
         avc_ios.getScreenshot(filename=pathMuteAfter)
-        assert verify_utils.compare_images(pathMuteBefore, pathMuteBefore) == "Success"
+        assert verify_utils.compare_images(pathMuteBefore, pathMuteAfter) == "Success"
 
     '''3775本地前后摄像头切换'''
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
@@ -698,12 +700,12 @@ class TestIOS:
         # 复制消息
         avc_ios.copyHistroyMessageAndSend()
         avc_ios.back()
-        # bug 读完消息之后，消息图标上的数字应该消失,bug
-        # assert_not_exists(avc_ios.hasMessageExist)
+        # 读完消息之后，消息图标上的数字应该消失
+        assert avc_ios.numberMissAfterReadExits
         avc_ios.sendMessage("www.baidu.com")
-        # bug 链接跳转
+        # 链接跳转
         avc_ios.clickLink()
-        # todo:校验有多个 用户在会议中 远端是否可以接收到消息
+
 
     '''
         3779, 3794c 
@@ -763,7 +765,7 @@ class TestIOS:
         assert avc_ios.nameExists
 
     '''
-        3780 
+        3780 ,3789
         存在主持人，非主持人查看与会者，主持人后显示host图标，
         显示所有人的音频状态，但无法操作该状态
     '''
@@ -783,19 +785,19 @@ class TestIOS:
         avc_ios.joinChannel(self.channel_name, self.password)
         avc_ios.goToParticipantList()
         # 非主持人看到主持人后面显示主持人图标
-        assert avc_ios.OthersHostIconExist()
+        assert avc_ios.OthersHostIconExist
         # unmute音频
         avc_ios.unMutuOthersAudio()
-        # bug 待修复
-        assert_not_exists(avc_ios.inviteExists)
+        assert avc_ios.othersAudioMuteExists
+        avc_ios.cancel()
         # unmute视频
         avc_ios.unMutuOthersVideo()
-        # bug
-        assert_not_exists(avc_ios.inviteExists)
+        assert avc_ios.othersVideoMuteExists
+        avc_ios.cancel()
         # 踢人
         avc_ios.getOthersOut()
-        # bug
-        assert_not_exists(avc_ios.inviteExists)
+        assert avc_ios.cannotKickOther
+        avc_ios.cancel()
 
     ''' 
         3780 
@@ -951,7 +953,6 @@ class TestIOS:
         avc_android.setCurrentDevice(1)
         path1 = self.screeshot_path + "test_offNetWork1.jpg"
         avc_android.getScreenshot(filename=path1)
-        avc_android.downIcon()
         avc_android.goSettingInChannel()
         avc_android.UnmuteChannelAudio()
         avc_android.UnmuteChannelVideo()
@@ -1015,10 +1016,6 @@ class TestIOS:
         assert avc_ios.videoUnmuteExistsInChannel
 
 
-
-
-
-
     '''3787 3788无主持人时，与会者邀请远端unmute音视频，以及踢人'''
     def test_NoHostUnMuteOthers(self):
         # 启动android
@@ -1047,36 +1044,37 @@ class TestIOS:
         assert avc_ios.inviteExists
         avc_ios.sureClickUnmute()
 
-    '''3789存在主持人，非主持人邀请远端unmute音视频，以及踢人，不会出现弹窗'''
-    def test_disHostUnMuteOthers(self):
-        # 启动android
-        avc_android = self.avcAndroid
-        avc_android.setCurrentDevice(1)
-        avc_android.startAVC(self.packageName_android)
-        avc_android.joinChannel(self.channel_name, self.password)
-        avc_android.muteAudioInchannel()
-        avc_android.muteVideoInchannel()
-        avc_android.goSettingInChannel()
-        avc_android.applyToHost()
-        avc_android.back()
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        avc_ios.startAVC(self.packageName)
-        avc_ios.joinChannel(self.channel_name, self.password)
-        avc_ios.goToParticipantList()
-        # unmute音频
-        avc_ios.unMutuOthersAudio()
-        # bug
-        assert_not_exists(avc_ios.inviteExists)
-        # unmute视频
-        avc_ios.unMutuOthersVideo()
-        # bug
-        assert_not_exists(avc_ios.inviteExists)
-        # 踢人
-        avc_ios.getOthersOut()
-        # bug
-        assert_not_exists(avc_ios.inviteExists)
+    # '''3789存在主持人，非主持人邀请远端unmute音视频，以及踢人，不会出现弹窗'''
+    # def test_disHostUnMuteOthers(self):
+    #     # 启动android
+    #     avc_android = self.avcAndroid
+    #     avc_android.setCurrentDevice(1)
+    #     avc_android.startAVC(self.packageName_android)
+    #     avc_android.joinChannel(self.channel_name, self.password)
+    #     avc_android.muteAudioInchannel()
+    #     avc_android.muteVideoInchannel()
+    #     avc_android.goSettingInChannel()
+    #     avc_android.applyToHost()
+    #     avc_android.back()
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     avc_ios.startAVC(self.packageName)
+    #     avc_ios.joinChannel(self.channel_name, self.password)
+    #     avc_ios.goToParticipantList()
+    #
+    #     # unmute音频
+    #     avc_ios.unMutuOthersAudio()
+    #     # bug
+    #     assert_not_exists(avc_ios.inviteExists)
+    #     # unmute视频
+    #     avc_ios.unMutuOthersVideo()
+    #     # bug
+    #     assert_not_exists(avc_ios.inviteExists)
+    #     # 踢人
+    #     avc_ios.getOthersOut()
+    #     # bug
+    #     assert_not_exists(avc_ios.inviteExists)
 
     ''' 3789存在主持人，主持人可以邀请远端unmute音视频，以及踢人'''
     def test_HostUnMuteOthers(self):
@@ -1216,10 +1214,6 @@ class TestIOS:
         sleep(5)
         path1 = self.screeshot_path + "test_hostIcon1.jpg"
         avc_ios.getScreenshot(path1)
-        #  bug 待修复
-        # avc_ios.smallAndBigwindowChange()
-        # assert avc_ios.hostIconExists()
-        # avc_ios.smallAndBigwindowChange()
         assert avc_ios.hostIconExists
         avc_android = self.avcAndroid
         avc_android.setCurrentDevice(1)

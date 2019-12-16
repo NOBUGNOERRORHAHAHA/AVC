@@ -221,6 +221,10 @@ class IOS_AVC(Common_AVC):
     def readMessage(self):
         poco("message tool hasMsg").click()
 
+    # 读完消息之后，数字消失
+    def numberMissAfterReadExits(self):
+        poco("message tool").exists()
+
     #复制并发送消息
     def copyHistroyMessageAndSend(self):
         touch([200,100])
@@ -360,6 +364,8 @@ class IOS_AVC(Common_AVC):
         else:
             poco("video active").click()
 
+
+
     # 与会者列表中将别人移出房间
     def getOthersOut(self):
         poco("header_icon").click()
@@ -373,6 +379,23 @@ class IOS_AVC(Common_AVC):
     def cancelClickUnmute(self):
         poco("Window").offspring("Alert")[2].child("Other").child("Other").child("Other")[1].child("Other")[2].child(
             "Other").child("Other").offspring("取消")[0].click()
+
+    # 远端的视频是mute状态，存在主持人时无法邀请别人unmute
+    def othersVideoMuteExists(self):
+        poco("video inactive").exists()
+
+     # 远端的音频是mute状态，存在主持人时无法邀请别人unmute
+    def othersAudioMuteExists(self):
+        poco("mic inactive").exists()
+
+    #存在主持人，无法踢出别人
+    def cannotKickOther(self):
+        poco("hangup noraml").exists()
+
+    # 取消
+    def cancel(self):
+        poco("取消").click()
+
 
     def lessThree(self):
         poco("房间名必须不小于3位").exists()

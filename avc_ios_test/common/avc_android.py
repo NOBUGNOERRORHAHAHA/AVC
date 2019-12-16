@@ -9,7 +9,7 @@ import pytesseract
 pytesseract.pytesseract.tesseract_cmd=r'/usr/local/bin/tesseract'
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 # poco=AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
-device_2 = connect_device('Android:///SGTOO7NFQKY9I7CU?cap_method=javacap&touch_method=adb')
+device_2 = connect_device('Android:///7N2QPR1442014624?cap_method=javacap&touch_method=adb')
 poco_2 = AndroidUiautomationPoco(device_2, use_airtest_input=True, screenshot_each_action=False)
 auto_setup(__file__)
 
