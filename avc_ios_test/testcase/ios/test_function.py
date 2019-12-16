@@ -14,11 +14,11 @@ class TestIOS:
     def setup(self):
         self.avcIOS = IOS_AVC()
         self.avcAndroid = Android_AVC()
-        self.channel_name = "AVCAUTO"
+        self.channel_name = "AVC"
         self.password = "avctest"
         self.packageName = ac.Package_Name.ios_packageName
         self.packageName_android = ac.Package_Name.android_packageName
-        self.screeshot_path = "resource/screenshot/"
+        self.screeshot_path = "avc_ios_test/resource/screenshot/"
 
     def teardown(self):
         # self.avc.stopAVC(self.packageName)
@@ -198,7 +198,7 @@ class TestIOS:
         avc_ios = self.avcIOS
         avc_ios.setCurrentDevice(0)
         avc_ios.startAVC(self.packageName)
-        avc_ios.joinChannel(roomName = "NotExistRoom", password = self.password)
+        avc_ios.joinChannel(roomName="NotExistRoom", password = self.password)
         avc_ios.leaveChannel()
 
     '''3765输入的房间密码不正确无法进入会议'''
@@ -326,8 +326,8 @@ class TestIOS:
 
     ''' 3771 nickname有效'''
     @pytest.mark.parametrize("nickname",
-                            ["测试中文","1234567890", "qwertyuiopasdfghjk", "QWERTYUIOPASDFGHJ", "KLZXCVVBNM", "l;'zxv c bnm,./",
-                             "~!@#$%^&()_+"],"<script>hi</script>","null","")
+                            [ "测试中文","1234567890", "qwertyuiopasdfghjk", "QWERTYUIOPASDFGHJ", "KLZXCVVBNM", "l;'zxv c ",
+                             "~!@#$%^&()_+","ull",""] )
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
     def test_updateNickname_01(self, nickname):
         avc = self.avcIOS
@@ -620,6 +620,23 @@ class TestIOS:
         avc.getScreenshot(filename=path2)
         assert verify_utils.compare_images(path1, path2) == "Success"
 
+    '''3776网络质量显示'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_NetWorkInfo(self):
+        avc = self.avcIOS
+        avc.setCurrentDevice(0)
+        avc.startAVC(self.packageName)
+        assert avc.goodNetWorkExistsOUT
+        avc.joinChannel(self.channel_name, self.password)
+        assert avc.goodNetWorkExistsInchannel
+        avc.home()
+        avc.closeNeWork()
+        avc.startAVC(self.packageName)
+        assert avc.badNetWorkExistsOUT
+        avc.joinChannel(self.channel_name, self.password)
+        assert avc.badNetWorkExistsInchannel
+
+
     '''3777会议参与者在频道内说话音频图标显示'''
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
     def test_audioExist(self):
@@ -882,9 +899,9 @@ class TestIOS:
         avc_ios.hostInfoClick()
         assert avc_ios.hostIconExists
         # 点击房间属性，非主持人无法点击
-        avc_ios.hostNotApplyClick()
+        avc_ios.roomSettingClick()
         # 存在主持人，无法更改房间内属性
-        assert avc_ios.hostNotApplyExists
+        assert avc_ios.roomSettingExists
         avc_ios.back()
         avc_ios.leaveChannel()
         avc_android = self.avcAndroid
@@ -907,6 +924,100 @@ class TestIOS:
         avc_ios.applyToHost()
         avc_ios.back()
         assert avc_ios.hostIconExists
+
+    '''
+        3782断网后修改房间音视频属性    
+    '''
+    def test_offNetWorkChangeRoomSetting(self):
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.joinChannel(self.channel_name, self.password)
+        avc_ios.goSettingInChannel()
+        # 设置房间的音视频属性为mute
+        avc_ios.muteChannelVideo()
+        avc_ios.muteChannelAudio()
+        avc_ios.back()
+        # avc_ios.startAVC(self.packageName)
+        # avc_ios.joinChannel(self.channel_name, self.password)
+        # 远端加入音视频mute属性的房间
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios.setCurrentDevice(0)
+        # 本地断网，远端修改房间音视频属性
+        avc_ios.closeNetWork()
+        avc_android.setCurrentDevice(1)
+        path1 = self.screeshot_path + "test_offNetWork1.jpg"
+        avc_android.getScreenshot(filename=path1)
+        avc_android.downIcon()
+        avc_android.goSettingInChannel()
+        avc_android.UnmuteChannelAudio()
+        avc_android.UnmuteChannelVideo()
+        avc_android.back()
+        # 本地联网
+        avc_ios.setCurrentDevice(0)
+        avc_ios.openNetWork()
+        sleep(5)
+        avc_android.setCurrentDevice(1)
+        path2 = self.screeshot_path + "test_offNetWork2.jpg"
+        avc_android.getScreenshot(filename=path2)
+        # 断网后重连网络，音视频仍不会互通
+        assert verify_utils.compare_images(path1, path2) == "Success"
+        # 进入音视频属性为unmute的房间
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.joinChannel(self.channel_name, self.password)
+        avc_ios.closeNetWork()
+        avc_android.setCurrentDevice(0)
+        path3 = self.screeshot_path + "test_offNetWork3.jpg"
+        avc_android.getScreenshot(filename=path3)
+        avc_android.downIcon()
+        avc_android.goSettingInChannel()
+        avc_android.muteChannelAudio()
+        avc_android.muteChannelVideo()
+        avc_ios.setCurrentDevice(0)
+        avc_ios.openNetWork()
+        sleep(5)
+        avc_android.setCurrentDevice(1)
+        path4 = self.screeshot_path + "test_offNetWork4.jpg"
+        avc_android.getScreenshot(filename=path4)
+        # 断网后重连网络，音视频仍会互通
+        assert verify_utils.compare_images(path3, path4) == "Success"
+
+    '''
+        3784断网过程中，被mute/unmute后重新联网    
+    '''
+    def test_offNetWorkBeMuteThanOpenNet(self):
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.joinChannel(self.channel_name, self.password)
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios.setCurrentDevice(0)
+        avc_ios.closeNetWork()
+        avc_android.setCurrentDevice(1)
+        avc_android.goToParticipantList()
+        avc_android.muteOthersAudio()
+        avc_android.muteOthersVideo()
+        # 本地联网
+        avc_ios.setCurrentDevice(0)
+        avc_ios.openNetWork()
+        sleep(5)
+        avc_ios.home()
+        avc_ios.openAVC()
+        assert avc_ios.audioUnmuteExistsInChannel
+        assert avc_ios.videoUnmuteExistsInChannel
+
+
+
+
+
 
     '''3787 3788无主持人时，与会者邀请远端unmute音视频，以及踢人'''
     def test_NoHostUnMuteOthers(self):
@@ -1026,14 +1137,12 @@ class TestIOS:
 
     ''' 3793音视频unmute窗口分开显示'''
     def test_audioAndVideoDiffUmnuteWindows(self):
-        # 启动ios
         avc_ios = self.avcIOS
         avc_ios.setCurrentDevice(0)
         avc_ios.startAVC(self.packageName)
         avc_ios.joinChannel(self.channel_name, self.password)
         avc_ios.muteAudioInchannel()
         avc_ios.muteVideoInchannel()
-        # 启动android
         avc_android = self.avcAndroid
         avc_android.setCurrentDevice(1)
         avc_android.startAVC(self.packageName_android)
@@ -1059,6 +1168,35 @@ class TestIOS:
         assert avc.RTMExist
         avc.RTMClick()
         assert avc.buildExist
+
+    '''
+        3791断网过程中，远端发起unmute音视频邀请  
+    '''
+    def test_offNetWorkRemoteUnmute(self):
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.joinChannel(self.channel_name, self.password)
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios.setCurrentDevice(0)
+        avc_ios.muteVideoInchannel()
+        avc_ios.muteAudioInchannel()
+        avc_ios.closeNetWork()
+        avc_android.setCurrentDevice(1)
+        avc_android.goToParticipantList()
+        avc_android.unMutuOthersAudio()
+        avc_android.unMutuOthersVideo()
+        # 本地联网
+        avc_ios.setCurrentDevice(0)
+        avc_ios.openNetWork()
+        sleep(5)
+        avc_ios.home()
+        avc_ios.openAVC()
+        assert avc_ios.audioUnmuteExistsInChannel
+        assert avc_ios.videoUnmuteExistsInChannel
 
     '''3799主持人icon显示'''
     def test_hostIcon(self):
@@ -1113,7 +1251,8 @@ class TestIOS:
         avc = self.avcIOS
         avc.setCurrentDevice(0)
         avc.startAVC(self.packageName)
-        avc.passwordInfoClick
+        avc.passwordInfoClick()
+        avc.passwordInfoExists
 
     '''4345设置昵称，mute音视频昵称显示情况'''
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
@@ -1159,6 +1298,7 @@ class TestIOS:
         avc_ios.leaveChannel()
         avc_android = self.avcAndroid
         avc_android.setCurrentDevice(1)
+        avc_android.downIcon()
         channeltime_remote2 = avc_android.remoteTime()
         print("<<<<", channeltime_remote2)
         # assert channeltime_remote2 >= "00:00:05" and channeltime_remote2 <= "00:01:05"
@@ -1175,7 +1315,7 @@ class TestIOS:
         channeltime_second = avc_ios.getWordsInImage(path3)
         print("<<<<", channeltime_second)
         # assert channeltime_second >= "00:00:00" and channeltime_second <= "00:00:05"
-        
+
 
     '''4689进入会议室后不可修改密码'''
     @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
@@ -1189,12 +1329,225 @@ class TestIOS:
         avc_ios.startAVC(self.packageName)
         avc_ios.joinChannel(self.channel_name, self.password)
         avc_ios.leaveChannel()
+        avc_ios.startAVC(self.packageName)
         avc_ios.joinChannel(roomName=self.channel_name, password="changePassword")
         assert avc_ios.errorPasswordInfo
 
+    '''4347closeAndOpen  rtm '''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_rtmCloseAndOpen(self):
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.joinChannel(self.channel_name,self.password)
+        avc_ios.goMine()
+        avc_ios.openDeveloperInChannel()
+        avc_ios.closeRTM()
+        # rtm断线的业务图标存在
+        assert avc_ios.rtmDisConnectIconExists
+        avc_ios.openDeveloperInChannel()
+        avc_ios.openRTM()
+        avc_ios.back()
+        # 重连rtm，业务图标消失，可发送消息
+        avc_ios.sendMessage("aaaa")
 
+    '''4362, 4551 断开rtm，媒体功能自测'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_rtmCloseMediaTest(self):
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.goMine()
+        avc_ios.openDeveloperOUT()
+        avc_ios.closeRTM()
+        avc_ios.back()
+        # 输入正确的密码，音视频会被纠正过来
+        avc_ios.joinChannel(self.channel_name, self.password)
+        assert avc_ios.audioExistInChannel
+        assert avc_ios.videoExistInChannel
+        avc_ios.muteAudioInchannel()
+        avc_ios.goSettingInChannel()
+        # 点击房间设置，业务功能无法使用
+        avc_ios.roomSettingClick()
+        assert avc_ios.roomSettingExists
+        avc_ios.back()
+        avc_ios.goToParticipantList()
+        avc_ios.mutuOthersAudio()
+        avc_ios.back()
+        avc_ios.back()
+        # mute视频，媒体功能无法使用
+        avc_ios.muteVideoInchannel()
+        avc_ios.goToParticipantList()
+        # 不能mute，提示服务器未连接
+        avc_ios.mutuOthersVideo()
+        assert avc_ios.disConnetExists
+        avc_ios.back()
+        avc_ios.back()
+        avc_ios.leaveChannel()
+        # 输入错误的密码，不提示有无密码，以及密码是否正确
+        avc_ios.reSetPassword("fsasfas")
+        assert avc_ios.audioMuteExistsInChannel
+        assert avc_ios.videoMuteExistsInChannel
+        avc_ios.leaveChannel()
 
-        
+    '''4531频道外断开rtm，本地默认关闭音视频'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_rtmCloseMute(self):
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.goMine()
+        avc_ios.openDeveloperOUT()
+        avc_ios.closeRTM()
+        avc_ios.back()
+        avc_ios.joinChannel(self.channel_name, self.password)
+        assert avc_ios.audioMuteExistsInChannel
+        assert avc_ios.videoMuteExistsInChannel
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        # 远端不断开rtm加入频道，音视频会被纠正过来
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        assert avc_ios.audioExistInChannel
+        assert avc_ios.videoExistInChannel
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.downIcon()
+        avc_android.downIcon()
+        avc_android.goSettingInChannel()
+        avc_android.muteChannelAudio()
+        avc_android.muteChannelVideo()
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.goSettingInChannel()
+        # 远端更改房间音视频mute，本地房间音视频为mute
+        assert avc_ios.muteChannelAudioExists
+        assert avc_ios.muteChannelVideoExists
+        avc_ios.slide()
+        # 频道内重连rtm，本地音视频不会被mute
+        avc_ios.openDeveloperInChannel()
+        avc_ios.openRTM()
+        avc_ios.back()
+        assert avc_ios.audioUnmuteExistsInChannel
+        assert avc_ios.videoUnmuteExistsInChannel
+        # 退出频道重新进入频道，本地音视频被mute
+        avc_ios.leaveChannel()
+        avc_ios.joinChannelSecond()
+        assert avc_ios.audioMuteExistsInChannel
+        assert avc_ios.videoMuteExistsInChannel
+
+    '''4548 （1-5） 本地rtm断开，开config，加入存在的房间，房间密码显示'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_rtmClosejoinOthers(self):
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.goMine()
+        avc_ios.openDeveloperOUT()
+        avc_ios.closeRTM()
+        avc_ios.back()
+        # 断开rtm，输入正确的密码，房间设置界面显示房间名和房间密码
+        avc_ios.joinChannel(self.channel_name,self.password)
+        avc_ios.goSettingInChannel()
+        assert avc_ios.channelInfoExists
+        avc_ios.back()
+        avc_ios.leaveChannel()
+        # 断开rtm，输入错误的房间密码，本地与远端不互通
+        avc_ios.reSetPassword("adfasfas")
+        avc_ios.goToParticipantList()
+        path3 = self.screeshot_path + "test_checkParticipants_c.jpg"
+        path4 = self.screeshot_path + "test_checkParticipants_d.jpg"
+        avc_ios.getScreenshot(filename=path3)
+        width, height = avc_ios.getImageSize(path3)
+        avc_ios.getCustomizeImage(path3, path4, 1 / 3 * width, 1 / 20 * height, 2 / 3 * width, 1 / 8 * height)
+        avc_ios.getNumberOfParticipants(path4)
+        assert avc_ios.getNumberOfParticipants(path4) == 1
+        avc_ios.back()
+        avc_ios.leaveChannel()
+        avc_ios.reSetPassword("")
+        # 断开rtm，不输入密码，本地与远端不互通
+        avc_ios.goToParticipantList()
+        path1 = self.screeshot_path + "test_checkParticipants_a.jpg"
+        path2 = self.screeshot_path + "test_checkParticipants_b.jpg"
+        avc_ios.getScreenshot(filename=path1)
+        width, height = avc_ios.getImageSize(path1)
+        avc_ios.getCustomizeImage(path1, path2, 1 / 3 * width, 1 / 20 * height, 2 / 3 * width, 1 / 8 * height)
+        avc_ios.getNumberOfParticipants(path2)
+        assert avc_ios.getNumberOfParticipants(path2) == 1
+        avc_ios.back()
+        avc_ios.leaveChannel()
+
+    '''4548 （6- 9） 本地rtm断开创建房间，远端加入房间，房间密码显示'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_rtmCloseCreateRoom(self):
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.goMine()
+        avc_ios.openDeveloperOUT()
+        avc_ios.closeRTM()
+        avc_ios.back()
+        avc_ios.joinChannel(self.channel_name,self.password)
+        # 远端不输入房间密码,不互通，只显示本地（远端创建了房间，本地断开rtm创建的房间不会被业务服务器获取到）
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(roomName=self.channel_name, password="")
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.goToParticipantList()
+        path1 = self.screeshot_path + "test_checkParticipants_a.jpg"
+        path2 = self.screeshot_path + "test_checkParticipants_b.jpg"
+        avc_ios.getScreenshot(filename=path1)
+        width, height = avc_ios.getImageSize(path1)
+        avc_ios.getCustomizeImage(path1, path2, 1 / 3 * width, 1 / 20 * height, 2 / 3 * width, 1 / 8 * height)
+        avc_ios.getNumberOfParticipants(path2)
+        assert avc_ios.getNumberOfParticipants(path2) == 1
+        # 远端输入错误的房间密码，无法加入房间，提示密码错误(在远端创建的房间销毁之前)
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.leaveChannel()
+        avc_android.joinChannel(roomName=self.channel_name,password="errorpassword")
+        assert avc_android.errorPasswordInfo
+        #  远端输入正确的房间密码，正常加入频道（在远端创建的房间被业务服务器销毁之后）
+        sleep(100)
+        avc_android.joinChannel(self.channel_name,self.password)
+        avc_android.goSettingInChannel()
+        path = self.screeshot_path + "test_channelInfoToSee.jpg"
+        avc_android.getScreenshot(filename=path)
+
+    '''4548 （10-12）本地断开rtm，输入随机密码加入存在的房间，频道内重连rtm，提示密码错误被退出房间'''
+    @pytest.mark.tags(case_tag.iOS, case_tag.MEDIUM, case_tag.AUTOMATED, case_tag.FUNCTIONALITY)
+    def test_rtmClosejoinThanOpenRTM(self):
+        avc_android = self.avcAndroid
+        avc_android.setCurrentDevice(1)
+        avc_android.startAVC(self.packageName_android)
+        avc_android.joinChannel(self.channel_name, self.password)
+        avc_ios = self.avcIOS
+        avc_ios.setCurrentDevice(0)
+        avc_ios.startAVC(self.packageName)
+        avc_ios.goMine()
+        avc_ios.openDeveloperOUT()
+        avc_ios.closeRTM()
+        avc_ios.back()
+        avc_ios.joinChannel(roomName=self.channel_name,password="dfadsfads")
+        avc_ios.goSettingInChannel()
+        avc_ios.openDeveloperInChannel()
+        avc_ios.openRTM()
+        # 提示密码错误，并且被退出房间
+        # assert
+        avc_ios.joinChannelSecond()
+
 
 
 
@@ -1245,75 +1598,75 @@ class TestIOS:
 
 
 
-    #进入会议前只mute音频，远端可以看到视频听不到声音
-    def test_preMuteAudioThanInChannel(self):
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        avc_ios.startAVC(self.packageName)
-        avc_ios.joinChannel(self.channel_name, self.password)
-        # 启动android
-        avc_android = self.avcAndroid
-        avc_android.setCurrentDevice(1)
-        avc_android.startAVC(self.packageName_android)
-        avc_android.goMine()
-        #打开视频，关闭麦克风
-        avc_android.preUnmuteVideo()
-        avc_android.preMuteAudio()
-        #返回，加入频道
-        avc_android.back()
-        avc_android.joinChannel(self.channel_name, self.password)
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        assert avc_ios.disAudioExistInChannel
-
-    #进入会议前只mute视频，远端可以看到视频听不到声音
-    def test_preMuteVideoThanInChannel(self):
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        avc_ios.startAVC(self.packageName)
-        avc_ios.joinChannel(self.channel_name, self.password)
-        # 启动android
-        avc_android = self.avcAndroid
-        avc_android.setCurrentDevice(1)
-        avc_android.startAVC(self.packageName_android)
-        avc_android.goMine()
-        #打开麦克风，关闭视频
-        avc_android.preUnmuteAudio()
-        avc_android.preMuteVideo()
-        #返回，加入频道
-        avc_android.back()
-        avc_android.joinChannel(self.channel_name, self.password)
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        assert avc_ios.videoExistInChannel
-
-    #进入会议前mute音视频，远端看到对方的视频框消失
-    def test_preMuteVideoAndAudioThanInChannel(self):
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        avc_ios.startAVC(self.packageName)
-        avc_ios.joinChannel(self.channel_name, self.password)
-        # 启动android
-        avc_android = self.avcAndroid
-        avc_android.setCurrentDevice(1)
-        avc_android.startAVC(self.packageName_android)
-        avc_android.goMine()
-        #关闭麦克风，关闭视频
-        avc_android.preMuteAudio()
-        avc_android.preMuteVideo()
-        #返回，加入频道
-        avc_android.back()
-        avc_android.joinChannel(self.channel_name, self.password)
-        # 启动ios
-        avc_ios = self.avcIOS
-        avc_ios.setCurrentDevice(0)
-        assert_not_exists(avc_ios.videoExistInChannel)
-        assert_not_exists(avc_ios.disAudioExistInChannel)
+    # #进入会议前只mute音频，远端可以看到视频听不到声音
+    # def test_preMuteAudioThanInChannel(self):
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     avc_ios.startAVC(self.packageName)
+    #     avc_ios.joinChannel(self.channel_name, self.password)
+    #     # 启动android
+    #     avc_android = self.avcAndroid
+    #     avc_android.setCurrentDevice(1)
+    #     avc_android.startAVC(self.packageName_android)
+    #     avc_android.goMine()
+    #     #打开视频，关闭麦克风
+    #     avc_android.preUnmuteVideo()
+    #     avc_android.preMuteAudio()
+    #     #返回，加入频道
+    #     avc_android.back()
+    #     avc_android.joinChannel(self.channel_name, self.password)
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     assert avc_ios.disAudioExistInChannel
+    #
+    # #进入会议前只mute视频，远端可以看到视频听不到声音
+    # def test_preMuteVideoThanInChannel(self):
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     avc_ios.startAVC(self.packageName)
+    #     avc_ios.joinChannel(self.channel_name, self.password)
+    #     # 启动android
+    #     avc_android = self.avcAndroid
+    #     avc_android.setCurrentDevice(1)
+    #     avc_android.startAVC(self.packageName_android)
+    #     avc_android.goMine()
+    #     #打开麦克风，关闭视频
+    #     avc_android.preUnmuteAudio()
+    #     avc_android.preMuteVideo()
+    #     #返回，加入频道
+    #     avc_android.back()
+    #     avc_android.joinChannel(self.channel_name, self.password)
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     assert avc_ios.videoExistInChannel
+    #
+    # #进入会议前mute音视频，远端看到对方的视频框消失
+    # def test_preMuteVideoAndAudioThanInChannel(self):
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     avc_ios.startAVC(self.packageName)
+    #     avc_ios.joinChannel(self.channel_name, self.password)
+    #     # 启动android
+    #     avc_android = self.avcAndroid
+    #     avc_android.setCurrentDevice(1)
+    #     avc_android.startAVC(self.packageName_android)
+    #     avc_android.goMine()
+    #     #关闭麦克风，关闭视频
+    #     avc_android.preMuteAudio()
+    #     avc_android.preMuteVideo()
+    #     #返回，加入频道
+    #     avc_android.back()
+    #     avc_android.joinChannel(self.channel_name, self.password)
+    #     # 启动ios
+    #     avc_ios = self.avcIOS
+    #     avc_ios.setCurrentDevice(0)
+    #     assert_not_exists(avc_ios.videoExistInChannel)
+    #     assert_not_exists(avc_ios.disAudioExistInChannel)
 
 
 
